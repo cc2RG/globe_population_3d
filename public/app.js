@@ -3,35 +3,60 @@ var scene = new THREE.Scene();
 
       var renderer = new THREE.WebGLRenderer();
       renderer.setSize( window.innerWidth, window.innerHeight );
+var pop = 1000000;
 
 
-var manMarkerGeom = new THREE.PlaneGeometry(1,2);
-  var manMarkerTexture = new THREE.TextureLoader().load("textures/manPurple.png")
-  var manMarkerMaterial = new THREE.MeshBasicMaterial({map:manMarkerTexture});
+
+
+
+
+var personGeom = new THREE.PlaneGeometry(1.5,2);
   
-  manMarkerTexture.wrapS = THREE.RepeatWrapping;
-  manMarkerTexture.wrapT = THREE.RepeatWrapping;
-  manMarkerTexture.repeat.set(1,1);  
-  var manMarker = new THREE.Mesh(manMarkerGeom,manMarkerMaterial);
-  scene.add( manMarker );
-   
+
+var purpleTex = new THREE.TextureLoader().load("textures/manPurple.png")
+var blueTex = new THREE.TextureLoader().load("textures/manBlue.png")
+var lightBlueTex = new THREE.TextureLoader().load("textures/manLightBlue.png")
+var greenTex = new THREE.TextureLoader().load("textures/manGreen.png")
+var yellowTex = new THREE.TextureLoader().load("textures/manYellow.png")
+var redTex = new THREE.TextureLoader().load("textures/manRed.png")
+var darkRedTex = new THREE.TextureLoader().load("textures/manDarkRed.png")
+var blackTex = new THREE.TextureLoader().load("textures/manBlack.png")
+
+var personMat = function(texture){
+  var mat = new THREE.MeshBasicMaterial({map:texture});  
+  mat.alphaTest = 0.5;
+  
+  return mat
+};
+ 
+//var purpleMat = new THREE.MeshBasicMaterial({map:purpleTex}); 
+  //  purpleMat.alphaTest = 0.5;
+ 
+  var Xposition = 0;
+  var Yposition = 0;
+  
+  var makePersonIcon = function(geometry,material){
+    
+    var icon = new THREE.Mesh(geometry,material);
+    icon.position.x = Xposition += 1;
+    scene.add(icon);
+  }
+
+  //makePersonIcon(manMarkerGeom, purpleMat);
+  makePersonIcon(personGeom, personMat(redTex));
+  makePersonIcon(personGeom, personMat(yellowTex));
+
+  
 
 
 
 
-
-
- //var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-     // var material = new THREE.MeshBasicMaterial( { color: 'wheat' } );
-      //var cube = new THREE.Mesh( geometry, material );
-      //scene.add( cube );
-
-      camera.position.z = 5;
+ 
+      camera.position.z = 10;
 
       var render = function () {
         requestAnimationFrame( render );
-        //manMarker.position.z -= 0.01
-        //cube.rotation.y += 0.01
+       
 
         renderer.render(scene, camera);
       };
