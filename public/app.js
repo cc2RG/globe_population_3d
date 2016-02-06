@@ -10,6 +10,13 @@ var globeGeom = new THREE.SphereGeometry(8,15,15);
 var globeMat = new THREE.MeshBasicMaterial({color: 'blue'});
 var globe = new THREE.Mesh(globeGeom,globeMat);
 scene.add(globe);
+//var light = new THREE.DirectionalLight(0xffffff,1);
+
+//light.position.set(0,1,0);
+
+//scene.add(light);
+
+
 //var personTex = function(texture){
 //  var tex = new THREE.TextureLoader().load(texture)
 //  return tex;
@@ -45,7 +52,13 @@ var personMat = function(texture){
     scene.add(icon);
   }
 
+  var infoView = function(pop){
 
+  };
+
+  var globeview = function(pop){
+
+  }
   
   var pop = 126769627;
   
@@ -152,6 +165,6 @@ var personMat = function(texture){
   
   var render = function () {
   requestAnimationFrame( render );
-  //icon.rotate.y += 0.01
+  globe.rotation.y += 0.001
   renderer.render(scene, camera);
   };
