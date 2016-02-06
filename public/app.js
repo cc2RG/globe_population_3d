@@ -4,9 +4,12 @@ var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeig
 
 var renderer = new THREE.WebGLRenderer();
     renderer.setSize( window.innerWidth, window.innerHeight );
-
+    renderer.setClearColor(0xffffff);
 var personGeom = new THREE.PlaneGeometry(1.5,2);
-
+var globeGeom = new THREE.SphereGeometry(8,15,15);
+var globeMat = new THREE.MeshBasicMaterial({color: 'blue'});
+var globe = new THREE.Mesh(globeGeom,globeMat);
+scene.add(globe);
 //var personTex = function(texture){
 //  var tex = new THREE.TextureLoader().load(texture)
 //  return tex;
@@ -29,17 +32,16 @@ var personMat = function(texture){
  
 
  
-  var Xposition = -20;
-  var Yposition = 0;
+  var xPosition = -20;
+  var yPosition = 0;
   
   var makePersonIcon = function(geometry,material){ 
     var icon = new THREE.Mesh(geometry,material);
-    icon.position.x = Xposition += 1;
-    icon.position.y = Yposition;
-    if( Xposition > 20){
-      Xposition = -20;
-      Yposition -= 1;
-    }
+    icon.position.x = xPosition += 1;
+    icon.position.y = yPosition;
+    //if( xPosition > 20){
+      //xPosition = -20;
+    //}
     scene.add(icon);
   }
 
@@ -57,6 +59,8 @@ var personMat = function(texture){
     }
   };
   var tenMillionCheck = function(){
+    yPosition -= 2;
+    xPosition = -20;
     for (var i = 0; i < pop; i++) {
       if(pop >= 10000000){
         makePersonIcon(personGeom,personMat(blueTex));
@@ -66,6 +70,8 @@ var personMat = function(texture){
   };
 
   var millionCheck = function(){
+    yPosition -=2;
+    xPosition = -20;
     for(var i = 0; i < pop; i++){
       if(pop >= 1000000){
         makePersonIcon(personGeom,personMat(lightBlueTex));
@@ -75,6 +81,8 @@ var personMat = function(texture){
   };
 
   var hundredThousandCheck = function(){
+    yPosition -=2; 
+    xPosition = -20;
     for(var i = 0; i < pop; i++){
       if (pop >= 100000) {
         makePersonIcon(personGeom,personMat(greenTex));
@@ -84,6 +92,8 @@ var personMat = function(texture){
   };
 
   var tenThousandCheck = function(){
+    yPosition -=2;
+    xPosition = -20;
     for(var i = 0; i < pop; i++){
       if (pop >= 10000) {
         makePersonIcon(personGeom,personMat(yellowTex));
@@ -94,6 +104,8 @@ var personMat = function(texture){
 
 
   var thousandCheck = function(){
+    yPosition-=2;
+    xPosition = -20;
     for(var i = 0; i < pop; i++){
       if (pop >= 1000) {
         makePersonIcon(personGeom,personMat(redTex));
@@ -103,6 +115,8 @@ var personMat = function(texture){
   };
 
   var hundredCheck = function(){
+    yPosition -=2;
+    xPosition = -20;
     for(var i = 0; i < pop; i++){
       if (pop >= 100) {
         makePersonIcon(personGeom,personMat(darkRedTex));
@@ -112,6 +126,8 @@ var personMat = function(texture){
   };
 
   var oneCheck = function(){
+    yPosition -=2;
+    xPosition = -20;
     for(var i = 0; i < pop; i++){
       if (pop >= 1) {
         makePersonIcon(personGeom,personMat(blackTex));
@@ -132,9 +148,10 @@ var personMat = function(texture){
 
 
  
-  camera.position.z = 10;
+  camera.position.z = 18;
   
   var render = function () {
   requestAnimationFrame( render );
+  //icon.rotate.y += 0.01
   renderer.render(scene, camera);
   };
