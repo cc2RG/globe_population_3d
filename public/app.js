@@ -8,7 +8,7 @@ var renderer = new THREE.WebGLRenderer();
     renderer.setClearColor('ghostwhite');
 
 
-var personGeom = new THREE.PlaneGeometry(0.75,1);
+var personGeom = new THREE.PlaneGeometry(1.5,2);
 
 var personTex = new THREE.TextureLoader().load("textures/manLightBlue.png")
 
@@ -53,7 +53,7 @@ var personMat = function(texture){
   };
 
   
-  generateIcons(200,1);
+  generateIcons(20000,20);
 
  
   camera.position.z = 20;
