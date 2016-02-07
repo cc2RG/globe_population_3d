@@ -4,15 +4,26 @@
     <title>Startpoint</title>
     <link rel='stylesheet' type='text/css' href='main.css'>
 
-
+   
     <script src="three.js"></script>
     <script src="app.js"></script>
+    
   </head>
   <body>
-    
+    <div id="canvas"></div>  
     <script>
-      document.body.appendChild( renderer.domElement );
+      container = document.getElementById('canvas');
+      document.body.appendChild(container);
+      container.appendChild( renderer.domElement );
       render();
     </script>
+
+  <select id="countries">
+  </select>
+  <div id="info">
+      <p></p>
+      <p></p>
+      <p></p>
+  </div>
   </body>
 </html>
