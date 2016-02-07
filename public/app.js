@@ -26,10 +26,10 @@ var personMat = function(texture){
     var x = -1 + Math.random() * 2;
     var y = -1 + Math.random() * 2;
     var z = -1 + Math.random() * 2;
-    var disatance = 10/ Math.sqrt(Math.pow(x,2)+Math.pow(y,2)+Math.pow(z,2));
-    x *= disatance;
-    y *= disatance; 
-    z *= disatance;
+    var distance = 10/ Math.sqrt(Math.pow(x,2)+Math.pow(y,2)+Math.pow(z,2));
+    x *= distance;
+    y *= distance; 
+    z *= distance;
 
 
     icon.position.x = x;
@@ -53,7 +53,7 @@ var personMat = function(texture){
   };
 
   
-  generateIcons(20000,20);
+  generateIcons(200,1);
 
  
   camera.position.z = 20;
