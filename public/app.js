@@ -9,10 +9,40 @@ var personGeom = new THREE.PlaneGeometry(1.5,2);
 var globeGeom = new THREE.SphereGeometry(8,15,15);
 var globeMat = new THREE.MeshBasicMaterial({color: 'blue'});
 var globe = new THREE.Mesh(globeGeom,globeMat);
-scene.add(globe);
+
+
+var x = -1 + Math.random() * 2;
+var y = -1 + Math.random() * 2;
+var z = -1 + Math.random() * 2;
+var disatance = 1/ Math.sqrt(Math.pow(x,2)+Math.pow(y,2)+Math.pow(z,2));
+x *= disatance;
+y *= disatance; 
+z *= disatance;
+// function mapToGlobe(lat,lng,radius,height){
+//   var phi = (lat)*MathPI/180;
+//   var theta = (lng-180)*Math.PI/180;
+
+//   var x = -(radius + height) + Math.cos(phi) * Math.cos(theta);
+//   var y = (radius + height) * Math.sin(phi);
+//   var z = (radius + height) * Math.cos(phi) * Math.sin(theta);
+
+//   return new THREE.vector3(x,y,z);
+
+// }
+
+// var testCubeGeom = new THREE.CubeGeometry(1,1,1);
+// var testCubeMat = new THREE.MeshBasicMaterial({color:'red'});
+// var testCube = new THREE.Mesh(testCubeGeom,testCubeMat);
+// testCube.position.x = 20;
+// testCube.lookAt(new THREE.Vector3(0,0,0)); 
+
+// scene.add(testCube);
+
+// scene.add(globe);
+
 //var light = new THREE.DirectionalLight(0xffffff,1);
 
-//light.position.set(0,1,0);
+//light.position.set(0,10,0);
 
 //scene.add(light);
 
@@ -21,6 +51,9 @@ scene.add(globe);
 //  var tex = new THREE.TextureLoader().load(texture)
 //  return tex;
 //}  
+
+
+
 
 var purpleTex = new THREE.TextureLoader().load("textures/manPurple.png")
 var blueTex = new THREE.TextureLoader().load("textures/manBlue.png")
@@ -38,7 +71,7 @@ var personMat = function(texture){
 };
  
 
- 
+  var zPosition = -20;
   var xPosition = -20;
   var yPosition = 0;
   
@@ -46,10 +79,9 @@ var personMat = function(texture){
     var icon = new THREE.Mesh(geometry,material);
     icon.position.x = xPosition += 1;
     icon.position.y = yPosition;
-    //if( xPosition > 20){
-      //xPosition = -20;
-    //}
+    icon.position.z = zPosition;
     scene.add(icon);
+    
   }
 
   var infoView = function(pop){
@@ -60,7 +92,7 @@ var personMat = function(texture){
 
   }
   
-  var pop = 126769627;
+  var pop = 5765924340;
   
   var hundredMillionCheck = function(){
     for(i = 0; i < pop; i++){
@@ -74,6 +106,7 @@ var personMat = function(texture){
   var tenMillionCheck = function(){
     yPosition -= 2;
     xPosition = -20;
+    zPosition += 2;
     for (var i = 0; i < pop; i++) {
       if(pop >= 10000000){
         makePersonIcon(personGeom,personMat(blueTex));
@@ -85,6 +118,7 @@ var personMat = function(texture){
   var millionCheck = function(){
     yPosition -=2;
     xPosition = -20;
+    zPosition += 2;
     for(var i = 0; i < pop; i++){
       if(pop >= 1000000){
         makePersonIcon(personGeom,personMat(lightBlueTex));
@@ -96,6 +130,7 @@ var personMat = function(texture){
   var hundredThousandCheck = function(){
     yPosition -=2; 
     xPosition = -20;
+    zPosition += 2;
     for(var i = 0; i < pop; i++){
       if (pop >= 100000) {
         makePersonIcon(personGeom,personMat(greenTex));
@@ -107,6 +142,7 @@ var personMat = function(texture){
   var tenThousandCheck = function(){
     yPosition -=2;
     xPosition = -20;
+    zPosition += 2;
     for(var i = 0; i < pop; i++){
       if (pop >= 10000) {
         makePersonIcon(personGeom,personMat(yellowTex));
@@ -119,6 +155,7 @@ var personMat = function(texture){
   var thousandCheck = function(){
     yPosition-=2;
     xPosition = -20;
+    zPosition += 2;
     for(var i = 0; i < pop; i++){
       if (pop >= 1000) {
         makePersonIcon(personGeom,personMat(redTex));
@@ -130,6 +167,7 @@ var personMat = function(texture){
   var hundredCheck = function(){
     yPosition -=2;
     xPosition = -20;
+    zPosition += 2;
     for(var i = 0; i < pop; i++){
       if (pop >= 100) {
         makePersonIcon(personGeom,personMat(darkRedTex));
@@ -141,6 +179,7 @@ var personMat = function(texture){
   var oneCheck = function(){
     yPosition -=2;
     xPosition = -20;
+    zPosition += 2;
     for(var i = 0; i < pop; i++){
       if (pop >= 1) {
         makePersonIcon(personGeom,personMat(blackTex));
@@ -162,7 +201,7 @@ var personMat = function(texture){
 
  
   camera.position.z = 18;
-  
+ 
   var render = function () {
   requestAnimationFrame( render );
   globe.rotation.y += 0.001
