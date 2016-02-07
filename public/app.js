@@ -43,8 +43,8 @@ var personMat = function(texture){
   }
 
   var generateIcons = function(pop,numberPerIcon){
-    
-    for(var i = 0; i < pop; i++){
+    var startingPop = pop;
+    for(var i = 0; i < startingPop; i++){
       if (pop >= numberPerIcon) {
         makePersonIcon(personGeom,personMat(personTex));
         pop -= numberPerIcon;
@@ -53,11 +53,10 @@ var personMat = function(texture){
   };
 
   
-  generateIcons(10000,10);
-  
+  generateIcons(200,1);
+
  
   camera.position.z = 20;
-  //camera.lookAt(new THREE.Vector3(0,0,0));
   camera.lookAt(scene.position)
   var render = function () {
   requestAnimationFrame(render);
